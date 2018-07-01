@@ -1,12 +1,15 @@
 package knights;
 
 import knights.base.Knight;
+import knights.config.KnightsConfig;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class KnightsMain {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context =
-                new ClassPathXmlApplicationContext("main/resources/knight.xml");
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(KnightsConfig.class);
         Knight knight = context.getBean(Knight.class);
         knight.embarkOnQuest();
         context.close();
