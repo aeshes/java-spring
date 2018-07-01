@@ -3,7 +3,6 @@ package knights;
 import knights.base.Knight;
 import knights.config.KnightsConfig;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class KnightsMain {
