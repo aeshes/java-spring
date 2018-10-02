@@ -35,7 +35,7 @@ public class PersonDAO {
     }
 
     public void deletePerson(Person person) {
-        jdbcTemplate.update(SQL_DELETE_PERSON);
+        jdbcTemplate.update(SQL_DELETE_PERSON, person.getId());
     }
 
     public boolean updatePerson(Person person) {
