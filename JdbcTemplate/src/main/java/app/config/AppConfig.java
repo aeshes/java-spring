@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 
@@ -23,7 +25,7 @@ public class AppConfig {
     private final String USER = "user";
     private final String PASS = "pass";
 
-    @Bean
+    //@Bean
     public DataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
         driverManagerDataSource.setUrl(environment.getProperty(URL));
@@ -32,5 +34,13 @@ public class AppConfig {
         driverManagerDataSource.setPassword(environment.getProperty(PASS));
 
         return driverManagerDataSource;
+    }
+
+    @Bean
+    public DataSource h2DataSource() {
+        return new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.H2)
+                .addScript("people.sql")
+                .build();
     }
 }
